@@ -1,0 +1,29 @@
+{
+  "name": "@hexlet/code",
+  "version": "1.0.0",
+  "description": "Second hexlet project",
+  "main": "index.js",
+  "bin": {
+    "gendiff": "src/bin/gendiff.js"
+  },
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/locorocohi/frontend-project-46.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/locorocohi/frontend-project-46/issues"
+  },
+  "homepage": "https://github.com/locorocohi/frontend-project-46#readme",
+  "dependencies": {
+    "commander": "^12.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0"
+  }
+}

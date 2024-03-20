@@ -4,7 +4,7 @@
   "description": "Second hexlet project",
   "main": "src/index.js",
   "bin": {
-    "gendiff": "src/bin/genDiff.js"
+    "gendiff": "src/bin/gendiff.js"
   },
   "type": "module",
   "scripts": {

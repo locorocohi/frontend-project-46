@@ -1,8 +1,8 @@
 import fs from 'fs';
 import path from 'path';
-import getAst from './getAst';
-import render from './renderers';
-import getParsedObject from './parsers';
+import getAst from './getAst.js';
+import render from './renders/jsonRender.js';
+import getParsedObject from './parsers.js';
 
 const genDiff = (path1, path2, type = 'diff') => {
   const beforeData = fs.readFileSync(`${path1.toString().trim()}`, 'utf8');

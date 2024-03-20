@@ -4,11 +4,11 @@
   "description": "Second hexlet project",
   "main": "src/index.js",
   "bin": {
-    "gendiff": "src/bin/gendiff.js"
+    "gendiff": "src/bin/genDiff.js"
   },
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,7 @@
     "lodash": "^4.17.21"
   },
   "devDependencies": {
-    "eslint": "^8.57.0"
+    "eslint": "^8.57.0",
+    "jest": "^29.7.0"
   }
 }

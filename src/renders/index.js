@@ -1,6 +1,8 @@
-import jsonRender from './jsonRender';
+import jsonRender from './jsonRender.js';
+import diffRender from './diffRender.js'
 
 const dataType = {
+  diff: diffRender,
   json: jsonRender
 };
 

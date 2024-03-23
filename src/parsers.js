@@ -1,8 +1,8 @@
-import yaml from 'js-yaml';
+import YAML from 'yaml'
 
 const dataType = {
   '.json': JSON.parse,
-  '.yaml': yaml.safeLoad,
+  '.yaml': YAML.parse,
 };
 
 export default (data, type) => dataType[type](data);

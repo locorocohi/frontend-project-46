@@ -27,14 +27,14 @@ describe('It works', () => {
     expect(genDiff(before, after)).toEqual(content);
   });
   test('plain', () => {
-    const before = `${path}tree1.json`;
-    const after = `${path}tree2.json`;
+    const before = `${path}filepath1.json`;
+    const after = `${path}filepath2.json`;
     const content = fs.readFileSync(`${__dirname}/__fixtures__/expectedPlain.txt`, 'utf-8').trim();
     expect(genDiff(before, after, 'plain')).toEqual(content);
   });
   test('jsonOutput', () => {
-    const before = `${path}tree1.json`;
-    const after = `${path}tree2.json`;
+    const before = `${path}filepath1.json`;
+    const after = `${path}filepath2.json`;
     const content = fs.readFileSync(`${__dirname}/__fixtures__/expectedJson.txt`, 'utf-8').trim();
     expect(genDiff(before, after, 'json')).toEqual(content);
   });

@@ -8,4 +8,5 @@ const dataType = {
   plain: plainRender
 };
 
+
 export default (data, type) => dataType[type](data);

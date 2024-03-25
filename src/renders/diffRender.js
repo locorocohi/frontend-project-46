@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 const tab = num => ' '.repeat(num * 2);
 
-const stringify = (data, level = 1) => {
+const stringify = (data, level) => {
   if (!_.isObject(data)) {
     return data;
   }
@@ -11,29 +11,30 @@ const stringify = (data, level = 1) => {
     if (!_.isObject(item)) {
       return `${tab(level + 2)}${item}: ${stringify(data[item])}`;
     }
+    level += 1;
     return `${tab(level + 2)}${item}: ${stringify(item, level)}`;
   });
-  return _.flattenDeep(['{', inner, `${tab(level)}  }`]).join('\n');
+  return _.flattenDeep(['{', inner, `${tab(level + 1)}}`]).join('\n');
 };
 
-const render = (item, depth = 0) => {
+const render = (item, depth = 1) => {
   const {
     type, key, beforeValue, afterValue, children, value,
   } = item;
   switch (type) {
     case 'object':
-      return [`${tab(depth + 2)}${key}: {`,
-        ...children.map(node => render(node, depth)),
-        `${tab(depth + 4)}}`];
+      return [`${tab(depth)}  ${key}: {`,
+        ...children.map(node => render(node, depth + 1)),
+        `${tab(depth + 1)}}`];
     case 'unchanged':
-      return `${tab(depth + 4)}${key}: ${stringify(value, depth)}`;
+      return `${tab(depth)}    ${key}: ${stringify(value, depth)}`;
     case 'changed':
-      return [`${tab(depth + 3)}- ${key}: ${stringify(beforeValue, depth)}`,
-        `${tab(depth + 3)}+ ${key}: ${stringify(afterValue, depth)}`];
+      return [`${tab(depth + 1)}- ${key}: ${stringify(beforeValue, depth)}`,
+        `${tab(depth + 1)}+ ${key}: ${stringify(afterValue, depth)}`];
     case 'deleted':
-      return `${tab(depth + 3)}- ${key}: ${stringify(value, depth)}`;
+      return `${tab(depth + 1)}- ${key}: ${stringify(value, depth)}`;
     case 'added':
-      return `${tab(depth + 3)}+ ${key}: ${stringify(value, depth)}`;
+      return `${tab(depth + 1)}+ ${key}: ${stringify(value, depth)}`;
     default:
       throw new Error('Type error');
   }

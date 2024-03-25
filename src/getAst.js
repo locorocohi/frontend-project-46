@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 const getAst = (before, after) => {
-  const keys = _.union(Object.keys(before), Object.keys(after));
+  const keys = _.union(Object.keys(before), Object.keys(after)).sort();
 
   return keys.reduce((acc, item) => {
     const beforeItem = before[item];

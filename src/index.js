@@ -4,7 +4,7 @@ import getAst from './getAst.js';
 import render from './renders/index.js';
 import getParsedObject from './parsers.js';
 
-const genDiff = (path1, path2, type = 'diff') => {
+const genDiff = (path1, path2, type = 'stylish') => {
   const beforeData = fs.readFileSync(`${path1.toString().trim()}`, 'utf8');
   const afterData = fs.readFileSync(`${path2.toString().trim()}`, 'utf8');
 

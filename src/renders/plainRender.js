@@ -1,28 +1,42 @@
 import _ from 'lodash';
+import { getKey, getType, getValue } from '../utils.js';
 
-const strignify = (data) => {
-  if (!_.isObject(data)) {
-    return `'${data}'`;
+const formatValueToPlain = (value) => {
+  if (_.isPlainObject(value)) {
+    return '[complex value]';
   }
-  return '[complex value]';
+  if (_.isString(value)) {
+    return `'${value}'`;
+  }
+  return `${value}`;
 };
 
-const render = (item, parent = '') => {
-  const {
-    type, key, beforeValue, afterValue, children, value,
-  } = item;
-  switch (type) {
-    case 'object':
-      return children.map(node => render(node, `${key}.`));
-    case 'changed':
-      return `Property '${parent}${key}' was updated. From ${strignify(beforeValue)} to ${strignify(afterValue)}`;
-    case 'deleted':
-      return `Property '${parent}${key}' was removed`;
-    case 'added':
-      return `Property '${parent}${key}' was added with value: ${strignify(value)}`;
-    default:
-      return null;
-  } // switch
-}; // function render
+const plain = (diff) => {
+  const iter = (curNode, prevPath) => {
+    const lines = curNode.map((node) => {
+      const [key, type, value] = [getKey(node), getType(node), getValue(node)];
+      const curPath = [...prevPath, key];
+      const baseLine = `Property '${curPath.join('.')}' was ${type}`;
+      switch (type) {
+        case 'added':
+          return `${baseLine} with value: ${formatValueToPlain(value)}`;
+        case 'removed':
+          return `${baseLine}`;
+        case 'unchanged':
+          return '';
+        case 'updated':
+          return `${baseLine}. From ${formatValueToPlain(value[0])} to ${formatValueToPlain(value[1])}`;
+        case 'nested':
+          return iter(value, curPath);
+        default:
+          throw new Error(`Unsupported node type (${type})!`);
+      }
+    });
 
-export default ast => _.flattenDeep(ast.map(item => render(item))).filter(item => item !== null).join('\n');
+    return lines.filter((line) => line !== '').join('\n');
+  };
+
+  return iter(diff, '');
+};
+
+export default plain;

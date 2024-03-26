@@ -1,6 +1,6 @@
 import stylish from './stylish.js';
 import plain from './plainRender.js';
-import jsonRender from './jsonRender.js'
+import jsonRender from './jsonRender.js';
 
 const format = (ast, formatType) => {
   switch (formatType) {

@@ -1,4 +1,4 @@
-import YAML from 'yaml'
+import YAML from 'yaml';
 
 const dataType = {
   '.json': JSON.parse,

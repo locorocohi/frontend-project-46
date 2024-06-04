@@ -5,10 +5,10 @@ const getAst = (data1, data2) => {
   const allKeysSorted = _.sortBy(allKeys);
 
   return allKeysSorted.map((key) => {
-    if (!_.has(data1, key) && _.has(data2, key)) {
+    if (!_.has(data1, key)) {
       return { key, type: 'added', value: data2[key] };
     }
-    if (_.has(data1, key) && !_.has(data2, key)) {
+    if (!_.has(data2, key)) {
       return { key, type: 'removed', value: data1[key] };
     }
     if (_.isEqual(data1[key], data2[key])) {

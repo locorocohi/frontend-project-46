@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import { getKey, getType, getValue } from '../utils.js';
 
-const formatValueToPlain = (value) => {
+const stringifyToPlain = (value) => {
   if (_.isPlainObject(value)) {
     return '[complex value]';
   }
@@ -19,13 +19,13 @@ const plain = (diff) => {
       const baseLine = `Property '${curPath.join('.')}' was ${type}`;
       switch (type) {
         case 'added':
-          return `${baseLine} with value: ${formatValueToPlain(value)}`;
+          return `${baseLine} with value: ${stringifyToPlain(value)}`;
         case 'removed':
           return `${baseLine}`;
         case 'unchanged':
-          return '';
+          return null;
         case 'updated':
-          return `${baseLine}. From ${formatValueToPlain(value[0])} to ${formatValueToPlain(value[1])}`;
+          return `${baseLine}. From ${stringifyToPlain(value[0])} to ${stringifyToPlain(value[1])}`;
         case 'nested':
           return iter(value, curPath);
         default:
@@ -33,7 +33,7 @@ const plain = (diff) => {
       }
     });
 
-    return lines.filter((line) => line !== '').join('\n');
+    return lines.filter((line) => line !== '' && line !== null).join('\n');
   };
 
   return iter(diff, '');

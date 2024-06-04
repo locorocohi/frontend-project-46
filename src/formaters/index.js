@@ -1,6 +1,5 @@
 import stylish from './stylish.js';
 import plain from './plainRender.js';
-import jsonRender from './jsonRender.js';
 
 const format = (ast, formatType) => {
   switch (formatType) {
@@ -9,7 +8,7 @@ const format = (ast, formatType) => {
     case 'plain':
       return plain(ast);
     case 'json':
-      return jsonRender(ast);
+      return JSON.stringify(ast, null, 2);
     default:
       throw new Error(`Unsupported format type (${formatType})! [Supported: stylish, plain, json]`);
   }

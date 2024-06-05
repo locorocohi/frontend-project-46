@@ -18,8 +18,8 @@ const getAst = (data1, data2) => {
       return {
         key,
         type: 'updated',
-        from: data1[key],
-        to: data2[key],
+        firstData: data1[key],
+        secondData: data2[key],
       };
     }
     const children = getAst(data1[key], data2[key]);

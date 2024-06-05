@@ -1,9 +1,16 @@
 import YAML from 'yaml';
 
-const dataType = {
-  '.json': JSON.parse,
-  '.yaml': YAML.parse,
-  '.yml': YAML.parse,
+const parse = (data, format) => {
+  switch (format) {
+    case 'json':
+      return JSON.parse(data);
+    case 'yml':
+      return YAML.parse(data);
+    case 'yaml':
+      return YAML.parse(data);
+    default:
+      throw new Error(`unexpected format ${format}`);
+  }
 };
 
-export default (data, type) => dataType[type](data);
+export default parse;

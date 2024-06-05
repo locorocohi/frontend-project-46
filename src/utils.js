@@ -8,7 +8,7 @@ export const getValue = (node) => {
     return node.value;
   }
   if (type === 'updated') {
-    return [node.from, node.to];
+    return [node.firstData, node.secondData];
   }
   return node.children;
 };

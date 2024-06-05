@@ -21,8 +21,8 @@
       {
         "key": "setting3",
         "type": "updated",
-        "from": true,
-        "to": null
+        "firstData": true,
+        "secondData": null
       },
       {
         "key": "setting4",
@@ -47,8 +47,8 @@
               {
                 "key": "wow",
                 "type": "updated",
-                "from": "",
-                "to": "so much"
+                "firstData": "",
+                "secondData": "so much"
               }
             ]
           },
@@ -73,8 +73,8 @@
       {
         "key": "baz",
         "type": "updated",
-        "from": "bas",
-        "to": "bars"
+        "firstData": "bas",
+        "secondData": "bars"
       },
       {
         "key": "foo",
@@ -84,10 +84,10 @@
       {
         "key": "nest",
         "type": "updated",
-        "from": {
+        "firstData": {
           "key": "value"
         },
-        "to": "str"
+        "secondData": "str"
       }
     ]
   },

@@ -30,8 +30,8 @@ const getAst = (data1, data2) => {
       return {
         key,
         type: 'updated',
-        firstData: data1[key],
-        secondData: data2[key],
+        data1: data1[key],
+        data2: data2[key],
       };
     }
     if (_.isPlainObject(data1[key]) && _.isPlainObject(data2[key])) {
